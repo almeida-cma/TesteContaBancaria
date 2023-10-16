@@ -1,0 +1,66 @@
+public class ContaBancaria {
+    private String titular;
+    private double saldo;
+    private String agencia;
+    private String numero;
+
+    // Construtor
+    public ContaBancaria(String titular, String agencia, String numero) {
+        this.titular = titular;
+        this.agencia = agencia;
+        this.numero = numero;
+        this.saldo = 0.0; // inicia a conta com saldo 0
+    }
+
+    // Getter e Setter para Titular
+    public String getTitular() {
+        return titular;
+    }
+
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
+    // Getter para Saldo (Não terá setter, pois o saldo será modificado por métodos de depósito e saque)
+    public double getSaldo() {
+        return saldo;
+    }
+
+    // Getter e Setter para Agencia
+    public String getAgencia() {
+        return agencia;
+    }
+
+    public void setAgencia(String agencia) {
+        this.agencia = agencia;
+    }
+
+    // Getter e Setter para Numero
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    // Método para depositar dinheiro na conta
+    public void depositar(double valor) {
+        if(valor > 0) {
+            this.saldo += valor;
+        } else {
+            System.out.println("Valor de depósito inválido.");
+        }
+    }
+
+    // Método para sacar dinheiro da conta
+    public boolean sacar(double valor) {
+        if(valor > 0 && valor <= this.saldo) {
+            this.saldo -= valor;
+            return true; // saque bem-sucedido
+        } else {
+            System.out.println("Valor de saque inválido ou saldo insuficiente.");
+            return false; // saque falhou
+        }
+    }
+}
