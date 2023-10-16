@@ -1,0 +1,54 @@
+import java.util.Scanner;
+
+public class TesteContaBancariaInterativa {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite o nome do titular da conta:");
+        String tit = scanner.nextLine();
+
+        System.out.println("Digite a agência da conta:");
+        String ag = scanner.nextLine();
+
+        System.out.println("Digite o número da conta:");
+        String num = scanner.nextLine();
+
+        ContaBancaria conta = new ContaBancaria(tit, ag, num);
+
+        while (true) {
+            System.out.println("\nEscolha uma opção:");
+            System.out.println("1 - Depósito");
+            System.out.println("2 - Saque");
+            System.out.println("3 - Verificar Saldo");
+            System.out.println("4 - Sair");
+            int opcao = scanner.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("Digite o valor do depósito:");
+                    double valorDeposito = scanner.nextDouble();
+                    conta.depositar(valorDeposito);
+                    break;
+                case 2:
+                    System.out.println("Digite o valor do saque:");
+                    double valorSaque = scanner.nextDouble();
+                    conta.sacar(valorSaque);
+                    break;
+                case 3:
+                    System.out.println("Informações da Conta:");
+                    System.out.println("Titular: " + conta.getTitular());
+                    System.out.println("Agência: " + conta.getAgencia());
+                    System.out.println("Número: " + conta.getNumero());
+                    System.out.println("Saldo atual: " + conta.getSaldo());
+                    break;
+                case 4:
+                    System.out.println("Encerrando o programa...");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
+}
